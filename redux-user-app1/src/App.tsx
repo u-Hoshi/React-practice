@@ -1,4 +1,4 @@
-import React, { useState, VFC } from 'react';
+import { useState, VFC } from 'react';
 import { UserInfo } from './UserInfo';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -7,40 +7,45 @@ import { isUser } from './types/isUser';
 import Box from '@mui/material/Box';
 import { RootState } from '../src/app/store';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  setModalUser,
-  setDisplayUser,
-} from './features/setusers/SetUsersSlice';
+import { setDisplayUser } from './features/setusers/SetUsersSlice';
 
 const App: VFC = () => {
-  // const { info, displayUser, setDisplayUser, modalUser, setModalUser } =
-  //   useAllUsers();
-  const modalUser = useSelector((state: RootState) => state.user.modalUser);
+  const info = {
+    user1: {
+      id: 1,
+      name: 'hoge',
+    },
+    user2: {
+      id: 2,
+      name: 'foo',
+    },
+    user3: {
+      id: 3,
+      name: 'bar',
+    },
+  };
   const displayUser = useSelector((state: RootState) => state.user.displayUser);
+  const [modalUser, setModalUser] = useState<isUser>({
+    ...displayUser,
+  });
   const dispatch = useDispatch();
-
-  console.log(modalUser);
 
   const [open, setOpen] = useState(false);
   const isModalOpen = () => setOpen(!open);
 
-  // const onChangeModalSwitch = (modalUser: isUser) => {
-  //   setModalUser({ ...modalUser });
-  // };
+  const onChangeModalSwitch = (modalUser: isUser) => {
+    setModalUser({ ...modalUser });
+  };
 
-  // const onSubmitModal = () => {
-  //   setDisplayUser({
-  //     1: modalUser[1],
-  //     2: modalUser[2],
-  //     3: modalUser[3],
-  //   });
-  //   isModalOpen();
-  // };
+  const onSubmitModal = () => {
+    dispatch(setDisplayUser({ ...modalUser }));
+    isModalOpen();
+  };
 
   return (
     <>
       <Button onClick={isModalOpen}>Open modal</Button>
-      {/* <Modal
+      <Modal
         open={open}
         onClose={isModalOpen}
         aria-labelledby='modal-modal-title'
@@ -66,7 +71,7 @@ const App: VFC = () => {
       )}
       {displayUser[3] && (
         <UserInfo id={info.user3.id} userName={info.user3.name}></UserInfo>
-      )} */}
+      )}
     </>
   );
 };

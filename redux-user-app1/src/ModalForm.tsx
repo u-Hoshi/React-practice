@@ -7,8 +7,8 @@ import Button from '@mui/material/Button';
 type ModalFormType = {
   modalUser: isUser;
   displayUser: isUser;
-  onChangeModalSwitch: (checked: any) => void;
-  onSubmitModal: (checked: any) => void;
+  onChangeModalSwitch: (payload: isUser) => void;
+  onSubmitModal: () => void;
   onCancel: () => void;
 };
 
@@ -39,7 +39,9 @@ export const ModalForm: VFC<ModalFormType> = props => {
           handleChange={(
             event: ChangeEvent<HTMLInputElement>,
             checked: boolean
-          ) => onChangeModalSwitch({ ...modalUser, 1: checked })}
+          ) => {
+            onChangeModalSwitch({ ...modalUser, 1: checked });
+          }}
           label='user1'
         />
         <ModalSwitch
@@ -47,7 +49,9 @@ export const ModalForm: VFC<ModalFormType> = props => {
           handleChange={(
             event: ChangeEvent<HTMLInputElement>,
             checked: boolean
-          ) => onChangeModalSwitch({ ...modalUser, 2: checked })}
+          ) => {
+            onChangeModalSwitch({ ...modalUser, 2: checked });
+          }}
           label='user2'
         />
         <ModalSwitch
@@ -55,7 +59,9 @@ export const ModalForm: VFC<ModalFormType> = props => {
           handleChange={(
             event: ChangeEvent<HTMLInputElement>,
             checked: boolean
-          ) => onChangeModalSwitch({ ...modalUser, 3: checked })}
+          ) => {
+            onChangeModalSwitch({ ...modalUser, 3: checked });
+          }}
           label='user3'
         />
         <Box
@@ -69,7 +75,11 @@ export const ModalForm: VFC<ModalFormType> = props => {
           >
             キャンセル
           </Button>
-          <Button onClick={onSubmitModal} variant='contained' size='small'>
+          <Button
+            onClick={() => onSubmitModal()}
+            variant='contained'
+            size='small'
+          >
             適用
           </Button>
         </Box>
