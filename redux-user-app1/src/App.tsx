@@ -10,6 +10,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setDisplayUser } from './features/setusers/SetUsersSlice';
 
 const App: VFC = () => {
+  const [open, setOpen] = useState(false);
+  const isModalOpen = () => setOpen(!open);
+  const dispatch = useDispatch();
+  const displayUser = useSelector((state: RootState) => state.user.displayUser);
+  const [modalUser, setModalUser] = useState<isUser>({
+    ...displayUser,
+  });
   const info = {
     user1: {
       id: 1,
@@ -24,14 +31,6 @@ const App: VFC = () => {
       name: 'bar',
     },
   };
-  const displayUser = useSelector((state: RootState) => state.user.displayUser);
-  const [modalUser, setModalUser] = useState<isUser>({
-    ...displayUser,
-  });
-  const dispatch = useDispatch();
-
-  const [open, setOpen] = useState(false);
-  const isModalOpen = () => setOpen(!open);
 
   const onChangeModalSwitch = (modalUser: isUser) => {
     setModalUser({ ...modalUser });
@@ -44,7 +43,10 @@ const App: VFC = () => {
 
   return (
     <>
-      <Button onClick={isModalOpen}>Open modal</Button>
+      <h1>簡易フィルター</h1>
+      <Button onClick={isModalOpen} variant='contained'>
+        Open modal
+      </Button>
       <Modal
         open={open}
         onClose={isModalOpen}
@@ -61,7 +63,6 @@ const App: VFC = () => {
           />
         </Box>
       </Modal>
-      <h1>簡易フィルター</h1>
       {displayUser[1] && (
         <UserInfo id={info.user1.id} userName={info.user1.name}></UserInfo>
       )}

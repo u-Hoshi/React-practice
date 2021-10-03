@@ -17,15 +17,15 @@ export const useAllUsers = () => {
     },
   };
   const [modalUser, setModalUser] = useState<isUser>({
-    1: false,
-    2: false,
-    3: false,
+    1: true,
+    2: true,
+    3: true,
   });
 
   const [displayUser, setDisplayUser] = useState<isUser>({
-    1: false,
-    2: false,
-    3: false,
+    1: true,
+    2: true,
+    3: true,
   });
   return { info, displayUser, setDisplayUser, modalUser, setModalUser };
 };

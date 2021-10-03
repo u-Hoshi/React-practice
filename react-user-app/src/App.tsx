@@ -26,7 +26,10 @@ const App: VFC = () => {
 
   return (
     <>
-      <Button onClick={isModalOpen}>Open modal</Button>
+      <h1>簡易フィルター</h1>
+      <Button onClick={isModalOpen} variant='contained'>
+        Open modal
+      </Button>
       <Modal
         open={open}
         onClose={isModalOpen}
@@ -43,7 +46,6 @@ const App: VFC = () => {
           />
         </Box>
       </Modal>
-      <h1>簡易フィルター</h1>
       {displayUser[1] && (
         <UserInfo id={info.user1.id} userName={info.user1.name}></UserInfo>
       )}

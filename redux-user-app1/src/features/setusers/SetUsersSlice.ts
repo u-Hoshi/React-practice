@@ -4,8 +4,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 const initialState: isUserType = {
   displayUser: {
     1: true,
-    2: false,
-    3: false,
+    2: true,
+    3: true,
   },
 };
 
