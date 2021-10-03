@@ -17,11 +17,9 @@ const App: VFC = () => {
     setModalUser({ ...modalUser });
   };
 
-  const onSubmitModal = () => {
+  const onSubmitModal = (modalUser: isUser) => {
     setDisplayUser({
-      1: modalUser[1],
-      2: modalUser[2],
-      3: modalUser[3],
+      ...modalUser,
     });
     isModalOpen();
   };
@@ -40,7 +38,7 @@ const App: VFC = () => {
             modalUser={modalUser}
             displayUser={displayUser}
             onChangeModalSwitch={onChangeModalSwitch}
-            onSubmitModal={onSubmitModal}
+            onSubmitModal={() => onSubmitModal(modalUser)}
             onCancel={isModalOpen}
           />
         </Box>

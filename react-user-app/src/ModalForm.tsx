@@ -1,4 +1,4 @@
-import { ChangeEvent, VFC } from 'react';
+import { ChangeEvent, MouseEvent, MouseEventHandler, VFC } from 'react';
 import Box from '@mui/material/Box';
 import { isUser } from './types/isUser';
 import { ModalSwitch } from './ModalSwitch';
@@ -7,8 +7,8 @@ import Button from '@mui/material/Button';
 type ModalFormType = {
   modalUser: isUser;
   displayUser: isUser;
-  onChangeModalSwitch: (checked: any) => void;
-  onSubmitModal: (checked: any) => void;
+  onChangeModalSwitch: (modalUser: isUser) => void;
+  onSubmitModal: (modalUser: isUser) => void;
   onCancel: () => void;
 };
 
@@ -69,7 +69,11 @@ export const ModalForm: VFC<ModalFormType> = props => {
           >
             キャンセル
           </Button>
-          <Button onClick={onSubmitModal} variant='contained' size='small'>
+          <Button
+            onClick={() => onSubmitModal(modalUser)}
+            variant='contained'
+            size='small'
+          >
             適用
           </Button>
         </Box>
