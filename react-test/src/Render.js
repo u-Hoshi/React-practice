@@ -7,8 +7,8 @@ const Render = () => {
       <input type='text' />
       <button>click1</button>
       <button>click2</button>
-      <p>hoge</p>
-      <span>@foo</span>
+      <p>hoge2</p>
+      <span data-testid='sample'>@foo</span>
     </div>
   );
 };
