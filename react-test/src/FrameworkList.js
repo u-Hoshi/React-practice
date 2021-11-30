@@ -1,4 +1,4 @@
-export const FrameworkList = props => {
+const FrameworkList = props => {
   if (!props.frameworks || !props.frameworks.length) {
     return <h1>No Data</h1>;
   }
@@ -12,3 +12,5 @@ export const FrameworkList = props => {
     </div>
   );
 };
+
+export default FrameworkList;

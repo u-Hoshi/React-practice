@@ -1,5 +1,5 @@
 import { render, cleanup, screen } from '@testing-library/react';
-import { FrameworkList } from './FrameworkList';
+import FrameworkList from './FrameworkList';
 
 afterEach(() => cleanup()); // クリーンアップ関数を呼ぶ
 
