@@ -1,14 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { act } from 'react-dom/test-utils';
-import { fetchCount } from './counterAPI';
-
-const initialState = {
-  value: 0,
-  status: 'idle',
-  mode: 0,
-  username: '',
-};
 
 const sleep = msec => {
   const start = new Date();
@@ -27,15 +18,14 @@ export const fetchJSON = createAsyncThunk('fetch/api', async () => {
 });
 
 export const customCounterSlice = createSlice({
-  name: 'counter',
-  initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
+  name: 'customCounter',
+  initialState: {
+    mode: 0,
+    value: 0,
+    username: '',
+  },
   reducers: {
     increment: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       switch (state.mode) {
         case 0:
           state.value += 1;
@@ -49,7 +39,6 @@ export const customCounterSlice = createSlice({
         default:
           break;
       }
-      state.value += 1;
     },
     decrement: state => {
       state.value -= 1;
@@ -72,18 +61,15 @@ export const customCounterSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(
-      fetchDummy.fulfilled,
-      (state, action) => (state.value = 100 + action.payload)
-    );
-    builder.addCase(
-      fetchDummy.rejected,
-      (state, action) => (state.value = 100 - action.payload)
-    );
-    builder.addCase(
-      fetchDummy.fulfilled,
-      (state, action) => (state.username = action.payload)
-    );
+    builder.addCase(fetchDummy.fulfilled, (state, action) => {
+      state.value = 100 + action.payload;
+    });
+    builder.addCase(fetchDummy.rejected, (state, action) => {
+      state.value = 100 - action.payload;
+    });
+    builder.addCase(fetchJSON.fulfilled, (state, action) => {
+      state.username = action.payload;
+    });
   },
 });
 
@@ -94,6 +80,6 @@ export const { increment, decrement, incrementByAmount } =
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCount = state => state.customCounter.value;
-export const selectUsername = state => state.customCounter.usernamer;
+export const selectUsername = state => state.customCounter.username;
 
 export default customCounterSlice.reducer;
