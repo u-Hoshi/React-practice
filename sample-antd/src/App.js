@@ -1,22 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BellOutlined,
+  CaretDownOutlined,
+  FormOutlined,
+  UserOutlined,
+} from '@ant-design/icons/lib/icons';
+import { Avatar, Input } from 'antd';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <div>
+          <h1>Qiita</h1>
+          <div>
+            <CaretDownOutlined />
+            <Input placeholder='Basic usage' />
+          </div>
+          <div>
+            <div>
+              <FormOutlined />
+              投稿する
+            </div>
+            <div>
+              <BellOutlined />
+            </div>
+            <Avatar size='large' icon={<UserOutlined />} />
+          </div>
+        </div>
       </header>
     </div>
   );
