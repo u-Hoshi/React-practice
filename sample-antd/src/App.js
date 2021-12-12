@@ -5,9 +5,9 @@ import {
   UserOutlined,
 } from '@ant-design/icons/lib/icons';
 import { Avatar, Col, Input, Row, Typography } from 'antd';
-import 'antd/dist/antd.css'; // ←を追加したらドキュメント通りのcssが当たるようになった
+import 'antd/dist/antd.css';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 function App() {
   return (
@@ -29,17 +29,25 @@ function App() {
           <CaretDownOutlined
             style={{ color: 'white', backgroundColor: '#3F8001' }}
           />
-          <Col span={6}>
-            <Input placeholder='Basic usage' />
+          <Col span={6} style={{ paddingLeft: '10px' }}>
+            <Input placeholder='キーワードを入力' />
           </Col>
           <Col
             offset={6}
-            style={{ color: 'white', backgroundColor: '#3F8001' }}
+            style={{
+              color: 'white',
+              backgroundColor: '#3F8001',
+              padding: '5px 10px',
+            }}
           >
             <FormOutlined />
-            投稿する
+            <Text strong style={{ color: 'white' }}>
+              投稿する
+            </Text>
           </Col>
-          <BellFilled style={{ color: 'white' }} />
+          <BellFilled
+            style={{ fontSize: '18px', padding: '15px', color: 'white' }}
+          />
           <Avatar
             shape='circle'
             style={{ backgroundColor: 'gray' }}
