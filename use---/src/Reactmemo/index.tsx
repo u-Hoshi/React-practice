@@ -21,10 +21,11 @@ export const Reactmemo = () => {
   const temp = useMemo(() => 1 + 3, []);
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <>
+      <h1>React.memo,useCallback,useMemo</h1>
       <button onClick={onClickButton1}>Childを表示</button>
       <button onClick={onClickButton2}>Childとは関係ない</button>
       <ReactmemoChild open={open} onClickClose={onClickClose} />
-    </div>
+    </>
   );
 };
